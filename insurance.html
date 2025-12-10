@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insurance Check</title>
+<style>
+body { font-family: Arial; background:#eef5ff; padding:20px; }
+.box {
+    width:350px; margin:auto; background:white; padding:20px;
+    border-radius:10px; box-shadow:0 0 10px #ccc;
+}
+input {
+    width:100%; padding:8px; margin-top:5px; margin-bottom:10px;
+}
+button {
+    width:100%; padding:10px; background:#2f80ed;
+    color:white; border:none; border-radius:5px;
+}
+#out { display:none; background:#fff4d6; padding:10px; margin-top:15px; border-radius:5px; }
+a { display:block; margin-top:15px; text-align:center; }
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>Insurance Status Check</h2>
+
+<label>Enter Ayushman Card Number</label>
+<input type="text" id="card" placeholder="Eg: AYU12345">
+
+<button onclick="check()">Check Status</button>
+
+<div id="out"></div>
+
+<a href="index.html">⬅ Back to Home</a>
+</div>
+
+<script>
+function check() {
+    let card = document.getElementById("card").value;
+    if (card === "") {
+        alert("Please enter a card number!");
+        return;
+    }
+
+    document.getElementById("out").style.display = "block";
+    document.getElementById("out").innerHTML =
+        "<b>Status:</b> Active<br>Eligible for cashless treatment.";
+}
+</script>
+
+</body>
+</html>

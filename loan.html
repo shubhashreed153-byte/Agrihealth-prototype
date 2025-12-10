@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Loan Eligibility</title>
+<style>
+    body { font-family: Arial; background:#eef5ff; padding:20px; }
+    .container {
+        width:350px; margin:auto; background:white; padding:20px;
+        border-radius:10px; box-shadow:0 0 10px #ccc;
+    }
+    label { font-weight:bold; }
+    input, select {
+        width:100%; padding:8px; margin-top:5px; margin-bottom:10px;
+    }
+    button {
+        width:100%; padding:10px; background:#2f80ed;
+        color:white; border:none; border-radius:5px;
+        cursor:pointer;
+    }
+    #result {
+        background:#dff9e5; padding:10px; margin-top:15px;
+        border-radius:5px; display:none;
+    }
+    a { display:block; text-align:center; margin-top:15px; text-decoration:none; }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Loan Eligibility Calculator</h2>
+
+    <label>Soil Type</label>
+    <select id="soil">
+        <option>Loamy</option>
+        <option>Sandy</option>
+        <option>Clay</option>
+        <option>Silt</option>
+        <option>Mixed</option>
+    </select>
+
+    <label>Land Area (Acres)</label>
+    <input type="number" id="land" placeholder="Eg: 2">
+
+    <label>Last Year Yield (Quintals)</label>
+    <input type="number" id="yield" placeholder="Eg: 10">
+
+    <label>Crop Type</label>
+    <input type="text" id="crop" placeholder="Eg: Rice">
+
+    <label>Market Price (₹/Quintal)</label>
+    <input type="number" id="price" placeholder="Eg: 2000">
+
+    <label>Annual Income (₹)</label>
+    <input type="number" id="income" placeholder="Eg: 50000">
+
+    <label>Irrigation Type</label>
+    <select id="irrigation">
+        <option>Rainfed</option>
+        <option>Well/Borewell</option>
+        <option>Canal</option>
+        <option>Drip</option>
+    </select>
+
+    <button onclick="calculate()">Check Eligibility</button>
+
+    <div id="result"></div>
+
+    <a href="index.html">⬅ Back to Home</a>
+</div>
+
+<script>
+function calculate() {
+    let yieldVal = document.getElementById("yield").value;
+    let price = document.getElementById("price").value;
+    let income = document.getElementById("income").value;
+
+    if (yieldVal === "" || price === "" || income === "") {
+        alert("Please fill all required fields!");
+        return;
+    }
+
+    let cropIncome = yieldVal * price;
+    let totalIncome = cropIncome + Number(income);
+    let eligible = totalIncome * 0.5;
+
+    document.getElementById("result").style.display = "block";
+    document.getElementById("result").innerHTML =
+        "<b>Eligible Loan Amount:</b> ₹ " + eligible.toFixed(0) +
+        "<br><br><b>Note:</b> This is a simple prototype estimation.";
+}
+</script>
+
+</body>
+</html>
